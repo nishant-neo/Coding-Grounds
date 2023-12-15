@@ -16,6 +16,14 @@ class Solution:
 
         # square_points = [[x1, y1], [x2, y2], [x1, y2], [x2, y1]]
 
+        # if the rectangle is on the right of circle min is xCenter
+        # we take x1 as nearest
+
+        # if the rectangle is on the left of the circle min is x2
+        # we take x2 as nearest
+
+        # similarly for y axis as well
+
         nearest_x  = max(x1, min(x2, xCenter))
         nearest_y  = max(y1, min(y2, yCenter))
 
