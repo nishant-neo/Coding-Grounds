@@ -34,6 +34,30 @@ Constraints:
 
 class Solution:
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+
+        # easier to look at
+
+        n = len(nums)
+        if n < 3:
+            return 0
+
+        last_diff = nums[1]-nums[0]
+        last_diff_index = 0
+        total_substrings = 0
+
+        for i in range(2,n):
+            if nums[i]-nums[i-1] == last_diff:
+                total_substrings += (i+1-last_diff_index-3+1)
+
+            else:
+                last_diff = nums[i]-nums[i-1]
+                last_diff_index = i-1
+
+        return total_substrings
+
+
+        # easier to understand
+
         n = len(nums)
         if n < 3:
             return 0
