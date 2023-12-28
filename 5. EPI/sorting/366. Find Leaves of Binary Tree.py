@@ -38,6 +38,12 @@ The number of nodes in the tree is in the range [1, 100].
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         result = []
@@ -62,3 +68,31 @@ class Solution:
             result.append(leaves)
 
         return result
+
+
+    def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
+        height_to_nodeval = {}
+        def dfs(node):
+            if node is None:
+                return 0
+
+            height = 0
+            if not(node.left is None and node.right is None):
+                node_left_height, node_right_height = 0,0
+                if node.left:
+                    node_left_height = dfs(node.left)
+                if node.right:
+                    node_right_height = dfs(node.right)
+                height = 1+max(node_right_height, node_left_height)
+
+            if height in height_to_nodeval:
+                height_to_nodeval[height].append(node.val)
+            else:
+                height_to_nodeval[height] = [node.val]
+
+            return height
+
+        dfs(root)
+
+
+        return height_to_nodeval.values()
