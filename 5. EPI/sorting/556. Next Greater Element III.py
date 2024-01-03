@@ -39,18 +39,20 @@ class Solution:
         if i == 0:
             return -1
 
+        pivot = i-1
+
         # When the digits are not in decreasing order, we find the first number
         # where the order is not maintained i.e. i-1
         # Also we find a j from lowest to highest since digits before i are sorted
         j = len(digits)-1
-        while j > i-1 and digits[j] <= digits[i-1]:
+        while j > pivot and digits[j] <= digits[pivot]:
             j -= 1
         # j = bisect.bisect_left(digits[i:], digits[i-1])-1
 
         # Here we first swap the smallest digit with the (i-1)th
         # And then sort in reverse order to get the min value
-        digits[i-1], digits[j] = digits[j], digits[i-1]
-        digits[i:] = digits[i:][::-1]
+        digits[pivot], digits[j] = digits[j], digits[pivot]
+        digits[pivot+1:] = digits[pivot+1:][::-1]
 
         res = int(''.join(digits))
 
