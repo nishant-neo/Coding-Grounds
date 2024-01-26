@@ -51,7 +51,9 @@ class Solution:
 
         retv = 0
         for i in range(g):
+            # here we first find the median of all the elemts at this position
             med = int(median(arr[i::g]))
+            # we add the distance of all the elemts at this pos from median
             retv += sum(abs(a-med) for a in arr[i::g])
 
         return retv  
