@@ -38,16 +38,16 @@ Constraints:
 class Solution:
     def countGood(self, A: List[int], k: int) -> int:
         N, count = len(A), defaultdict(int)
-        L =  result = pair_count = 0
+        l =  result = pair_count = 0
 
         # print(count)
-        for i, v in enumerate(A):
+        for r, v in enumerate(A):
             # print(count[v])
             pair_count += count[v] # counting the # pairs
             count[v] += 1
-            while L < i and pair_count >= k:
-                result += N - i
-                count[A[L]] -= 1
-                pair_count -= count[A[L]]
-                L += 1
+            while l < r and pair_count >= k:
+                result += N - r
+                count[A[l]] -= 1
+                pair_count -= count[A[l]]
+                l += 1
         return result
