@@ -46,12 +46,25 @@ target[i] is either '0' or '1'.
 """
 class Solution:
     def minFlips(self, target: str) -> int:
+        s = '0' * len(target)
+        i = 0
+        count = 0
+        while i < len(s):
+            if (s[i] != target[i]):
+                flipped_s = ['1' if c == '0' else '0' for c in s[i:]]
+                s = s[0:i] + ''.join(flipped_s)
+                count += 1
+            i += 1
+        
+        return count
 
-        flips, prev = 0, '0'
+    # def minFlips(self, target: str) -> int:
 
-        for c in target:
-            if prev != c:
-                flips += 1
-                prev = c
+    #     flips, prev = 0, '0'
 
-        return flips
+    #     for c in target:
+    #         if prev != c:
+    #             flips += 1
+    #             prev = c
+
+    #     return flips
