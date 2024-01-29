@@ -40,14 +40,21 @@ class Solution:
         # by rearrangement nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])
         # we just count the occurences and find the pairs
         dif_rev_nums = [ int(str(num)[::-1])-num for num in nums]
-        count_diffs = Counter(dif_rev_nums)
-
+        
+        # count_diffs = Counter(dif_rev_nums)
+        # res = 0
+        # for k, v in count_diffs.items():
+        #     if v == 2:
+        #         res = (res + 1) % MOD
+        #     elif v > 2:
+        #         res = (res + (v * (v-1))//2) % MOD
+        
+        # Another way of doing permutations
         res = 0
-        for k, v in count_diffs.items():
-            if v == 2:
-                res = (res + 1) % MOD
-            elif v > 2:
-                res = (res + (v * (v-1))//2) % MOD
+        count_diffs = defaultdict(int)
+        for num in dif_rev_nums:
+            res = (res + count_diffs[num]) % MOD
+            count_diffs[num] += 1
 
 
         return res
