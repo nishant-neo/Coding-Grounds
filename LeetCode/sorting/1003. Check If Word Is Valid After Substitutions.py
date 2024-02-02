@@ -49,4 +49,21 @@ class Solution:
             s = s.replace("abc", "")
         return s == ""
 
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        for elem in s:
+            if (
+                elem == 'c'
+                and len(stack) >= 2
+                and stack[-2] == 'a'
+                and stack[-1] == 'b'
+            ):
+                stack.pop()
+                stack.pop()
+            else:
+                stack.append(elem)
+        return len(stack) == 0
+
         
