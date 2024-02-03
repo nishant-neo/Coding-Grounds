@@ -56,6 +56,7 @@ class Solution:
             p = parent[n]
             while(parent[p] != p):
                 parent[p] = parent[parent[p]]
+                p = parent[p]
             return p
 
         def union(a, b):
@@ -101,6 +102,7 @@ class Solution:
 
 
         return res
+        
 
         # emailToAcc = {}  # email -> account_idx
         # uf = UnionFind(len(accounts))
