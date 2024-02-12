@@ -38,19 +38,28 @@ Follow up: If the BST is modified often (i.e., we can do insert and delete opera
 #         self.left = left
 #         self.right = right
 class Solution:
+    
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        """
+        time: O(n), space: O(n)
+        """
         
-        # def helper(root, values):
-        #     if root is None:
-        #         return
+        def helper(root, values):
+            if root is None:
+                return
 
-        #     helper(root.left, values)
-        #     values.append(root.val)
-        #     helper(root.right, values)
+            helper(root.left, values)
+            values.append(root.val)
+            helper(root.right, values)
 
-        # values = []
-        # helper(root, values)
-        # return values[k - 1]
+        values = []
+        helper(root, values)
+        return values[k - 1]
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        """
+        time: O(n), space: O(h)
+        """
         
         self.res = 0
         self.count = 0
@@ -66,6 +75,14 @@ class Solution:
 
         helper(root)
         return self.res
+
+
+
+
+
+            
+
+        
 
 
 
