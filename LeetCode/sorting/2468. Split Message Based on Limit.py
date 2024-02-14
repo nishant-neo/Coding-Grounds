@@ -43,23 +43,35 @@ message consists only of lowercase English letters and ' '.
 
 class Solution:
     def splitMessage(self, message: str, limit: int) -> List[str]:
-
+        @cache
         def splitable_within(parts_limit):
             # check the message length achievable with <parts_limit> parts
             length = 0
             for i in range(1, parts_limit + 1):
                 length += (limit - len(str(i)) - len(str(parts_limit)) - 3 )
+            print(parts_limit, length, len(message))
             return length >= len(message)
 
         parts_limit = 9
-        if not splitable_within(parts_limit):
-            parts_limit = 99
-        if not splitable_within(parts_limit):
-            parts_limit = 999
-        if not splitable_within(parts_limit):
-            parts_limit = 9999
-        if not splitable_within(parts_limit):
-            return []
+        for _parts_limit in [9, 99, 999, 9999, None]:
+            if _parts_limit is None:
+                return []
+            if splitable_within(_parts_limit):
+                parts_limit = _parts_limit
+                break
+
+        # parts_limit = 9
+        # if not splitable_within(parts_limit):
+        #     parts_limit = 99
+        # if not splitable_within(parts_limit):
+        #     parts_limit = 999
+        # if not splitable_within(parts_limit):
+        #     parts_limit = 9999
+        # # else:
+        # if not splitable_within(parts_limit):
+        #     return []
+
+        print(parts_limit)
 
         # generate the actual message parts
         parts = []
@@ -70,4 +82,14 @@ class Solution:
             parts.append(message[m_index:m_index + length])
             m_index += length
         
-        return [f'{part}<{i + 1}/{len(parts)}>' for i, part in enumerate(parts)]        
+        return [f'{part}<{i + 1}/{len(parts)}>' for i, part in enumerate(parts)]
+
+        
+
+
+
+
+        # return [""]
+
+
+            
