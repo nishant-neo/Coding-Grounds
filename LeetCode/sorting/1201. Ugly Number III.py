@@ -45,10 +45,10 @@ class Solution:
         lcm_ac = math.lcm(a, c)
         lcm_bc = math.lcm(b, c)
 
-        l, r = min(a, b, c), max(a, b, c) * n
+        l, r = min_el, min_el * n
 
         while (l <= r):
-            m = l + r >> 1
+            m = l + (r-l) // 2
 
             if ( (m//a + m//b + m//c - m//lcm_ab - m//lcm_bc - m//lcm_ac + m//lcm_abc) < n):
                 l = m+1
