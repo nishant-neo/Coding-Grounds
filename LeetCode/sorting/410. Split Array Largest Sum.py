@@ -48,13 +48,36 @@ class Solution:
             return total_subarray
 
         l, r = max(nums), sum(nums)
-        res = 0
-        while l <= r:
-            m = l + (r-l)//2
-            if min_subarrays_required(m) <= k:
-                r = m-1
-                res = m
-            else:
-                l = m+1
 
-        return res
+        ## both the BS are correct
+        
+        # res = 0
+        # while l <= r:
+        #     m = l + (r-l)//2
+        #     # here we are writing it this way because we dont 
+        #     if min_subarrays_required(m) <= k:
+        #         r = m-1
+        #         res = m
+        #     # elif min_subarrays_required(m) < k:
+        #     #     r = m-1
+        #     else:
+        #         l = m+1
+
+        # return res
+
+
+        while l < r:
+            m = l + (r-l)//2
+            if min_subarrays_required(m) > k:
+                l = m+1
+            else:
+                r = m
+
+        return r
+
+
+
+
+
+
+        
