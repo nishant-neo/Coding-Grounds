@@ -35,6 +35,7 @@ Constraints:
 """
 
 class Solution:
+    # O(n) Space and O(n) time
     def firstMissingPositive(self, nums: List[int]) -> int:
         n = len(nums)        
         index = [0]*n
@@ -45,5 +46,29 @@ class Solution:
         for idx in range(n):
             if index[idx] == 0:
                 return idx+1
+        return n+1
+
+    # O(1) Space and O(n) time
+    def firstMissingPositive(self, nums: List[int]) -> int:
+
+        min_pos = float("inf")
+        for idx in range(n):
+            if nums[idx] <= 0:
+                nums[idx] = 0
+            else:
+                min_pos = min(min_pos, nums[idx])
+
+        for idx in range(n):
+            num = abs(nums[idx])
+            if num <= n and num > 0 and nums[num-1] >= 0:
+                if nums[num-1] == 0:
+                    nums[num-1] = -1*min_pos
+                else:
+                    nums[num-1] = nums[num-1]*-1
+
+        for idx in range(n):
+            if nums[idx] >= 0:
+                return idx+1
+
         return n+1
         
