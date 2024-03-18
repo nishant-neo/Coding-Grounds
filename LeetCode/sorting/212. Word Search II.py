@@ -62,7 +62,7 @@ class Solution:
         res, visited = set(), set()
         def dfs(r, c, node):
             # print(r, c, node.children.keys())
-            node = node.children[board[r][c]]
+
             visited.add((r,c))
             if node.isword:
                 node.isword = False
@@ -76,7 +76,7 @@ class Solution:
                     (_r, _c) not in visited and
                     board[_r][_c] in node.children
                     ):
-                    dfs(_r, _c, node)
+                    dfs(_r, _c, node.children[board[_r][_c]])
 
             visited.remove((r,c))
 
@@ -84,9 +84,11 @@ class Solution:
         for r in range(ROW):
             for c in range(COL):
                 if board[r][c] in root.children:
-                    dfs(r, c, root)
+                    dfs(r, c, root.children[board[r][c]])
 
         return res
+
+        
 
         
 
