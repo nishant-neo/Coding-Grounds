@@ -62,17 +62,11 @@ class Solution:
         res, visited = set(), set()
         def dfs(r, c, node):
             # print(r, c, node.children.keys())
-            
             node = node.children[board[r][c]]
-
-            # word += board[r][c]
-            if node.isword:
-                # print(node.word)
-                node.isword = False
-                # for w in node.word:
-                res.add(node.word)
-                    # root.removeWord(word)
             visited.add((r,c))
+            if node.isword:
+                node.isword = False
+                res.add(node.word)
 
             for dr,dc in [(1,0), (0,1), (-1, 0),(0,-1)]:
                 _r, _c = r+dr, c+dc
@@ -93,5 +87,7 @@ class Solution:
                     dfs(r, c, root)
 
         return res
+
+        
 
         
